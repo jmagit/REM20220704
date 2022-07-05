@@ -1,5 +1,7 @@
 package com.example;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +21,7 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicación arrancada");
 		consultas();
@@ -27,6 +30,7 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	ActorRepository dao;
 	
+	@Transactional
 	private void consultas() {
 //		var ele = dao.findById(1);
 //		if(ele.isPresent()) {
@@ -43,6 +47,12 @@ public class DemoApplication implements CommandLineRunner {
 //		System.out.println(dao.countByActorIdLessThan(10));
 //		dao.findAll(Sort.by("firstName","lastName")).forEach(item -> System.out.println(item));
 //		dao.findByActorIdBetween( 5, 10, Sort.by("firstName","lastName")).forEach(item -> System.out.println(item));
-		dao.findAll(PageRequest.of(5, 10, Sort.by("actorId"))).getContent().forEach(item -> System.out.println(item));
+//		dao.findAll(PageRequest.of(5, 10, Sort.by("actorId"))).getContent().forEach(item -> System.out.println(item));
+//		dao.consultaSQL(200).forEach(item -> System.out.println(item));
+		var ele = dao.findById(1);
+		if(ele.isPresent()) {
+			var actor = ele.get();
+			actor.getFilmActors().forEach(item -> System.out.println(item.getFilm().getTitle()));
+		}
 	}
 }

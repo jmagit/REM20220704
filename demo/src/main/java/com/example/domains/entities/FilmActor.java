@@ -2,6 +2,9 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.example.domains.core.entities.EntityBase;
+
 import java.sql.Timestamp;
 
 
@@ -27,7 +30,7 @@ public class FilmActor extends EntityBase implements Serializable {
 	private Actor actor;
 
 	//bi-directional many-to-one association to Film
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name="film_id", insertable=false, updatable=false)
 	private Film film;
 

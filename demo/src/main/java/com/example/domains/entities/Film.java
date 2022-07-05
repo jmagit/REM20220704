@@ -2,6 +2,9 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.example.domains.core.entities.EntityBase;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;

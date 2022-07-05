@@ -3,6 +3,8 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.example.domains.core.entities.EntityBase;
+
 
 /**
  * The persistent class for the film_text database table.
