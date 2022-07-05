@@ -23,7 +23,7 @@ import java.util.Objects;
 @Entity
 @Table(name="actor")
 @NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
-public class Actor extends EntityBase implements Serializable {
+public class Actor extends EntityBase<Actor> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -37,7 +37,7 @@ public class Actor extends EntityBase implements Serializable {
 	private String firstName;
 
 	@Column(name="last_name")
-	@NotBlank
+	@NotBlank(message = "No puede estar en blanco")
 	@Length(min = 2, max = 45)
 	private String lastName;
 

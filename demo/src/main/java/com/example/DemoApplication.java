@@ -49,10 +49,16 @@ public class DemoApplication implements CommandLineRunner {
 //		dao.findByActorIdBetween( 5, 10, Sort.by("firstName","lastName")).forEach(item -> System.out.println(item));
 //		dao.findAll(PageRequest.of(5, 10, Sort.by("actorId"))).getContent().forEach(item -> System.out.println(item));
 //		dao.consultaSQL(200).forEach(item -> System.out.println(item));
-		var ele = dao.findById(1);
-		if(ele.isPresent()) {
-			var actor = ele.get();
-			actor.getFilmActors().forEach(item -> System.out.println(item.getFilm().getTitle()));
-		}
+//		var ele = dao.findById(1);
+//		if(ele.isPresent()) {
+//			var actor = ele.get();
+//			actor.getFilmActors().forEach(item -> System.out.println(item.getFilm().getTitle()));
+//		}
+		var actor = new Actor(0, "PEPITO", null);
+		if(actor.isInvalid())
+			System.out.println(actor.getErrorsMessage());
+		else
+			System.out.println("OK");
+		//dao.save(actor);
 	}
 }
