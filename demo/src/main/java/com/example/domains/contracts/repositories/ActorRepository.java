@@ -18,4 +18,6 @@ public interface ActorRepository extends JpaRepository<Actor, Integer> {
 	List<Actor> consulta(int id);
 	@Query(value =  "select * from actor where actor_id > ?1", nativeQuery = true)
 	List<Actor> consultaSQL(int id);
+	
+	<T> List<T> findByActorIdNotNull(Class<T> type);
 }

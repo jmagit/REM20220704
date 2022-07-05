@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorShort;
+import com.example.domains.entities.dtos.ActorShort2;
+import com.example.domains.entities.dtos.NamesOnly;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -64,6 +66,8 @@ public class DemoApplication implements CommandLineRunner {
 ////		var a = new ActorShort();
 //		System.out.println(ActorShort.from(new ActorShort(1, "Desde", "DTO")));
 //		dao.findAll().stream().map(item -> ActorShort.from(item)).toList().forEach(System.out::println);
-		dao.findTop5ByFirstNameStartingWithOrderByFirstName("p").forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
+//		dao.findTop5ByFirstNameStartingWithOrderByFirstName("p").forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
+//		dao.findByActorIdNotNull(NamesOnly.class).forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
+		dao.findByActorIdNotNull(ActorShort2.class).forEach(item -> System.out.println(item));
 	}
 }

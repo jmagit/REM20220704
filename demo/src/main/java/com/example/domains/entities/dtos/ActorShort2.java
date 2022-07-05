@@ -8,20 +8,20 @@ import lombok.NoArgsConstructor;
 import lombok.Value;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-public class ActorShort {
-	private int actorId;
-	private String firstName;
-	private String lastName;
+public class ActorShort2 {
+	private int id;
+	private String nombre;
+	private String apellidos;
 
-	public static Actor from(ActorShort source) {
+	public static Actor from(ActorShort2 source) {
 		return new Actor(
-				source.getActorId(),
-				source.getFirstName(),
-				source.getLastName()
+				source.getId(),
+				source.getNombre(),
+				source.getApellidos()
 				);
 	}
-	public static ActorShort from(Actor source) {
-		return new ActorShort(
+	public static ActorShort2 from(Actor source) {
+		return new ActorShort2(
 				source.getActorId(),
 				source.getFirstName(),
 				source.getLastName()
