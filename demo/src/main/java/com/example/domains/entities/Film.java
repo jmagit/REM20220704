@@ -3,6 +3,7 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -70,6 +71,9 @@ public class Film extends EntityBase implements Serializable {
 	private List<Inventory> inventories;
 
 	public Film() {
+		this.filmActors = new ArrayList<>();
+		this.filmCategories = new ArrayList<>();
+		this.inventories = new ArrayList<>();
 	}
 
 	public int getFilmId() {
