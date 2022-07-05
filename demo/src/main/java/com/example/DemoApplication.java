@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 
 import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.dtos.ActorShort;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -54,11 +55,15 @@ public class DemoApplication implements CommandLineRunner {
 //			var actor = ele.get();
 //			actor.getFilmActors().forEach(item -> System.out.println(item.getFilm().getTitle()));
 //		}
-		var actor = new Actor(0, "PEPITO", null);
-		if(actor.isInvalid())
-			System.out.println(actor.getErrorsMessage());
-		else
-			System.out.println("OK");
-		//dao.save(actor);
+//		var actor = new Actor(0, "PEPITO", "12345678Z");
+//		if(actor.isInvalid())
+//			System.out.println(actor.getErrorsMessage());
+//		else
+//			System.out.println(ActorShort.from(actor));
+//		//dao.save(actor);
+////		var a = new ActorShort();
+//		System.out.println(ActorShort.from(new ActorShort(1, "Desde", "DTO")));
+//		dao.findAll().stream().map(item -> ActorShort.from(item)).toList().forEach(System.out::println);
+		dao.findTop5ByFirstNameStartingWithOrderByFirstName("p").forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
 	}
 }

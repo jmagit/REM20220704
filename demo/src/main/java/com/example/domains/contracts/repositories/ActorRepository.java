@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.dtos.NamesOnly;
 
 public interface ActorRepository extends JpaRepository<Actor, Integer> {
-	List<Actor> findTop5ByFirstNameStartingWithOrderByFirstName(String prefijo);
+	List<NamesOnly> findTop5ByFirstNameStartingWithOrderByFirstName(String prefijo);
 	List<Actor> findByActorIdBetween(int vInicial, int vFinal);
 	List<Actor> findByActorIdBetween(int vInicial, int vFinal, Sort orden);
 	long countByActorIdLessThan(int valor);

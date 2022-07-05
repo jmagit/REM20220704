@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.entities.EntityBase;
+import com.example.domains.core.validations.NIF;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -39,6 +40,7 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	@Column(name="last_name")
 	@NotBlank(message = "No puede estar en blanco")
 	@Length(min = 2, max = 45)
+	@NIF
 	private String lastName;
 
 	@Column(name="last_update")
