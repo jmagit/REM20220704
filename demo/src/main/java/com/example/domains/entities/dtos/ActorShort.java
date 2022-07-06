@@ -1,5 +1,9 @@
 package com.example.domains.entities.dtos;
 
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.example.domains.entities.Actor;
 
 import lombok.AllArgsConstructor;
@@ -10,6 +14,8 @@ import lombok.Value;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class ActorShort {
 	private int actorId;
+	@NotBlank
+	@Length(min = 2, max = 45)
 	private String firstName;
 	private String lastName;
 
