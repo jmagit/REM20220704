@@ -11,10 +11,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.example.domains.contracts.repositories.ActorRepository;
+import com.example.domains.contracts.services.ActorService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorShort;
 import com.example.domains.entities.dtos.ActorShort2;
 import com.example.domains.entities.dtos.NamesOnly;
+import com.example.exceptions.DuplicateKeyException;
+import com.example.exceptions.InvalidDataException;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -27,11 +30,13 @@ public class DemoApplication implements CommandLineRunner {
 	@Transactional
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicación arrancada");
-		consultas();
+//		consultas();
 	}
 
 	@Autowired
 	ActorRepository dao;
+	@Autowired
+	ActorService srv;
 	
 	@Transactional
 	private void consultas() {
@@ -68,6 +73,17 @@ public class DemoApplication implements CommandLineRunner {
 //		dao.findAll().stream().map(item -> ActorShort.from(item)).toList().forEach(System.out::println);
 //		dao.findTop5ByFirstNameStartingWithOrderByFirstName("p").forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
 //		dao.findByActorIdNotNull(NamesOnly.class).forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
-		dao.findByActorIdIsNotNull(ActorShort.class).forEach(item -> System.out.println(item));
+//		dao.findByActorIdIsNotNull(ActorShort.class).forEach(item -> System.out.println(item));
+//		
+//		try {
+//			srv.add(new Actor(0, "PEPITO", "12345678Z"));
+//		} catch (DuplicateKeyException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InvalidDataException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		srv.getAll().forEach(System.out::println);
 	}
 }
