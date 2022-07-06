@@ -3,6 +3,7 @@ package com.example.applications.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.domains.contracts.services.ActorService;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.Film;
 import com.example.domains.entities.dtos.ActorShort;
 import com.example.exceptions.BadRequestException;
 import com.example.exceptions.DuplicateKeyException;
@@ -47,7 +49,7 @@ public class ActorResource {
 		return srv.getByProjection(page, ActorShort.class);
 	}
 
-	@GetMapping(path = "/{id}")
+	@GetMapping(path = "/{id:\\d+}/**")
 	public ActorShort getOne(@PathVariable int id) throws NotFoundException {
 		var item = srv.getOne(id);
 		if(item.isEmpty())
@@ -55,6 +57,18 @@ public class ActorResource {
 			
 		return ActorShort.from(item.get());
 	}
+	
+	@GetMapping(path = "/{id:\\d+}/peliculas")
+	@Transactional
+	public List<Film> getPeliculas(@PathVariable int id) throws NotFoundException {
+		var item = srv.getOne(id);
+		if(item.isEmpty())
+			throw new NotFoundException();
+			
+		return item.get().getFilmActors().stream().map(o -> o.getFilm()).toList();
+	}
+	
+	
 	@PostMapping
 	public ResponseEntity<Object> create(@Valid @RequestBody ActorShort item) throws BadRequestException, DuplicateKeyException, InvalidDataException {
 		var newItem = ActorShort.from(item);
@@ -71,6 +85,12 @@ public class ActorResource {
 		if(item.getActorId() != id) 
 			throw new BadRequestException("No coinciden los identificadores");
 		srv.modify(ActorShort.from(item));
+	}
+
+	@PutMapping("/{id}/jubilacion")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void jubilacion(@PathVariable int id) throws BadRequestException, NotFoundException, InvalidDataException {
+		// ...
 	}
 
 	@DeleteMapping("/{id}")
