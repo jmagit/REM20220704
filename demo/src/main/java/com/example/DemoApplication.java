@@ -68,6 +68,6 @@ public class DemoApplication implements CommandLineRunner {
 //		dao.findAll().stream().map(item -> ActorShort.from(item)).toList().forEach(System.out::println);
 //		dao.findTop5ByFirstNameStartingWithOrderByFirstName("p").forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
 //		dao.findByActorIdNotNull(NamesOnly.class).forEach(item -> System.out.println(item.getId() + " " + item.getNombre()));
-		dao.findByActorIdNotNull(ActorShort2.class).forEach(item -> System.out.println(item));
+		dao.findByActorIdIsNotNull(ActorShort.class).forEach(item -> System.out.println(item));
 	}
 }
