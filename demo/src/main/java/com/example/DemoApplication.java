@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.contracts.services.ActorService;
@@ -29,9 +31,14 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 @EnableOpenApi
+@EnableWebMvc
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
-
+    @Bean
+    InternalResourceViewResolver defaultViewResolver() {
+        return new InternalResourceViewResolver();
+    }
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
@@ -99,9 +106,9 @@ public class DemoApplication implements CommandLineRunner {
 	
 	@Bean
 	public Docket api() {                
-   	    return new Docket(DocumentationType.SWAGGER_2)          
+   	    return new Docket(DocumentationType.OAS_30)          
 	      .select()
-	      .apis(RequestHandlerSelectors.basePackage("com.example.application.resource"))
+	      .apis(RequestHandlerSelectors.basePackage("com.example.applications.resources"))
 	      .paths(PathSelectors.ant("/**"))
 	      .build()
 	      .apiInfo(new ApiInfoBuilder()
