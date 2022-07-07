@@ -41,14 +41,9 @@ import lombok.Value;
 @RestController
 @RequestMapping(path = "/api/contactos")
 public class ContactoResource {
-	@Value
-	public static class PageCount {
-		private int pages;
-		private int rows;
-	}
-
 	@Autowired
 	private ContactoRepository dao;
+
 	@GetMapping
 	@ApiOperation(value = "Listar todos")
 	public List<Contacto> getAll() {

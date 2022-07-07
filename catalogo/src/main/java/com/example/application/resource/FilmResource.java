@@ -46,7 +46,7 @@ import io.swagger.annotations.ApiResponse;
 
 @RestController
 @Api(value = "/peliculas", description = "Mantenimiento de peliculas", produces = "application/json, application/xml", consumes="application/json, application/xml")
-@RequestMapping(path = "/peliculas")
+@RequestMapping(path = "/v1/peliculas")
 public class FilmResource {
 	@Autowired
 	private FilmRepository dao;
