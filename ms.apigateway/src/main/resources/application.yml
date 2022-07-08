@@ -32,8 +32,10 @@ spring:
           - RewriteLocationResponseHeader=AS_IN_REQUEST, Location, ,
       - id: contactos-service
         predicates:
-          - Path=/api/contactos/**
+          - Path=/contactos/**
         uri: lb://contactos-service
+        filters:
+          - RewritePath=/contactos, /api/contactos
       - id: serv-demos
         predicates:
           - Path=/demos/**
