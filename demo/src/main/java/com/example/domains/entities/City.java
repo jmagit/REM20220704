@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="city")
 @NamedQuery(name="City.findAll", query="SELECT c FROM City c")
-public class City extends EntityBase implements Serializable {
+public class City extends EntityBase<City> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

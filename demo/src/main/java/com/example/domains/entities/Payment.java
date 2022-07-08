@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="payment")
 @NamedQuery(name="Payment.findAll", query="SELECT p FROM Payment p")
-public class Payment extends EntityBase implements Serializable {
+public class Payment extends EntityBase<Payment> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

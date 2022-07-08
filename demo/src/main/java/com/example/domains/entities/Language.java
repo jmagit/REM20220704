@@ -23,7 +23,7 @@ import java.util.List;
 @Entity
 @Table(name="language")
 @NamedQuery(name="Language.findAll", query="SELECT l FROM Language l")
-public class Language extends EntityBase implements Serializable {
+public class Language extends EntityBase<Language> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

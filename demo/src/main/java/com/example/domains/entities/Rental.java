@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name="rental")
 @NamedQuery(name="Rental.findAll", query="SELECT r FROM Rental r")
-public class Rental extends EntityBase implements Serializable {
+public class Rental extends EntityBase<Rental> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

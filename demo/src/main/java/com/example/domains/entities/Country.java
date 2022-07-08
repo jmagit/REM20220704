@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="country")
 @NamedQuery(name="Country.findAll", query="SELECT c FROM Country c")
-public class Country extends EntityBase implements Serializable {
+public class Country extends EntityBase<Country> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
