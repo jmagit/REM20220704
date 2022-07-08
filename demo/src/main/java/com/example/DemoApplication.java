@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -30,8 +33,9 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-@EnableOpenApi
 @EnableWebMvc
+@EnableOpenApi
+@EnableEurekaClient
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
     @Bean
@@ -108,7 +112,7 @@ public class DemoApplication implements CommandLineRunner {
 	public Docket api() {                
    	    return new Docket(DocumentationType.OAS_30)          
 	      .select()
-	      .apis(RequestHandlerSelectors.basePackage("com.example.applications.resources"))
+	      .apis(RequestHandlerSelectors.basePackage("com.example"))
 	      .paths(PathSelectors.ant("/**"))
 	      .build()
 	      .apiInfo(new ApiInfoBuilder()
@@ -118,6 +122,11 @@ public class DemoApplication implements CommandLineRunner {
 	                .license("Apache License Version 2.0")
 	                .contact(new Contact("Yo Mismo", "http://www.example.com", "myeaddress@example.com"))
 	                .build());
+	}
+
+	@Bean 
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+		return builder.build();
 	}
 
 }
