@@ -3,6 +3,7 @@ package com.example.applications.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -64,5 +65,13 @@ public class ConsultasResource {
 	@GetMapping(path = "/proxy/muchos")
 	public List<Pelicula> dameMuchosProxy() {
 		return proxy.damePeliculas();
+	}
+
+	@Value("${particular.para.demos}")
+	String miConfigString;
+	
+	@GetMapping(path = "/config")
+	public String dameConfig() {
+		return miConfigString;
 	}
 }
